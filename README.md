@@ -15,4 +15,9 @@ echo "Mi pagina personalizada" >> htdocs/index.html
 docker stop container_name && docker rm container_name
 ## Recrear el contenedor
 docker run -d -p 8080:80 httpd
-## 
+## Utilizar almacenamiento persistente en un contenedor:
+docker run -d -p 8080:80 -v /ruta/local:/ruta/containter  httpd
+## Construir una imagen de docker con Dockerfile
+docker build .
+## Renombrar imagen
+docker tag id new_name
