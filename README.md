@@ -8,11 +8,11 @@ docker run -d httpd
 ## Redireccionar un puerto local de la maquin (TCP/8080) a un puerto del contenedor (TCP/80):
 docker run -d -p 8080:80 httpd
 ## Conectarse a un contenedor:
-docker exec -ti <<name>> bash
+docker exec -ti <name> bash
 ## Cambiar el index.html por defecto
 echo "Mi pagina personalizada" >> htdocs/index.html
 ## Borrar el contenedor y recrear:
-docker stop <<name>> && docker rm <<name>>
+docker stop <name> && docker rm <<name>>
 ## Recrear el contenedor
 docker run -d -p 8080:80 httpd
 ## 
