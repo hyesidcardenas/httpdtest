@@ -7,7 +7,7 @@ https://hub.docker.com/
 docker run httpd
 ## Levantar el contenedor en backgroud:
 docker run -d httpd
-## Redireccionar un puerto local de la maquin (TCP/8080) a un puerto del contenedor (TCP/80):
+## Redireccionar un puerto local de la máquina (TCP/8080) a un puerto del contenedor (TCP/80):
 docker run -d -p 8080:80 httpd
 ## Conectarse a un contenedor:
 docker exec -ti container_name bash
