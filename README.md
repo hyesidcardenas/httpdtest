@@ -1,6 +1,8 @@
-# httpdtest
+# WorkShop - Red Hat OpenShift Container Platform 3.11
 html para WorkShops de OCP
-# Pruebas con Docker
+# Laboratorio de Contendores Docker
+## Buscar y descargar una imagen de Docker Hub
+https://hub.docker.com/
 ## Levantar un contenedor con apache:
 docker run httpd
 ## Levantar el contenedor en backgroud:
