@@ -1,5 +1,5 @@
 # WorkShop - Red Hat OpenShift Container Platform
-html para WorkShops de OCP
+Aqui se encuentra el index.html fuente de ejemplo para el despliegue de la APP en OpenShift para el WorkShop, ademas de los comandos clave para trabajar con contenedores Docker.
 # Laboratorio de Contendores Docker
 ## Buscar y descargar una imagen de Docker Hub
 https://hub.docker.com/
