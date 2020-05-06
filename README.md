@@ -1,4 +1,4 @@
-# WorkShop - Red Hat OpenShift Container Platform 3.11
+# WorkShop - Red Hat OpenShift Container Platform
 html para WorkShops de OCP
 # Laboratorio de Contendores Docker
 ## Buscar y descargar una imagen de Docker Hub
