@@ -23,10 +23,10 @@ docker run -d -p 8080:80 -v /ruta/local:/ruta/containter  httpd
 cat <<EOF > Dockerfile2  
 FROM httpd:latest  
 RUN apt-get update && \  
-                apt-get install procps -y && \  
-                apt-get clean  
+    apt-get install procps -y && \  
+    apt-get clean  
 EOF
 ## Construir una imagen de docker con Dockerfile
 docker build .
 ## Nombrar una imagen
-docker tag <IMAGE ID> <name>:latest
+docker tag "IMAGE ID" "name":latest
