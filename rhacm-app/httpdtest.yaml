@@ -1,0 +1,143 @@
+warning: Cannot check if git requires authentication.
+apiVersion: v1
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: httpdtest
+      app.kubernetes.io/component: httpdtest
+      app.kubernetes.io/instance: httpdtest
+    name: httpdtest
+  spec:
+    lookupPolicy:
+      local: false
+  status:
+    dockerImageRepository: ""
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: httpdtest
+      app.kubernetes.io/component: httpdtest
+      app.kubernetes.io/instance: httpdtest
+    name: httpdtest
+  spec:
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: httpdtest:latest
+    postCommit: {}
+    resources: {}
+    source:
+      git:
+        uri: https://github.com/camendezl/httpdtest
+      type: Git
+    strategy:
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: httpd:2.4-el8
+          namespace: openshift
+      type: Source
+    triggers:
+    - github:
+        secret: 9NbE6mMX8eqKRLHHeoe-
+      type: GitHub
+    - generic:
+        secret: oxztV-BkOmHVTHmO3VhX
+      type: Generic
+    - type: ConfigChange
+    - imageChange: {}
+      type: ImageChange
+  status:
+    lastVersion: 0
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"httpdtest:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"httpdtest\")].image"}]'
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: httpdtest
+      app.kubernetes.io/component: httpdtest
+      app.kubernetes.io/instance: httpdtest
+    name: httpdtest
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        deployment: httpdtest
+    strategy: {}
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          deployment: httpdtest
+      spec:
+        containers:
+        - image: ' '
+          name: httpdtest
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 8443
+            protocol: TCP
+          resources: {}
+  status: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: httpdtest
+      app.kubernetes.io/component: httpdtest
+      app.kubernetes.io/instance: httpdtest
+    name: httpdtest
+  spec:
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: 8443-tcp
+      port: 8443
+      protocol: TCP
+      targetPort: 8443
+    selector:
+      deployment: httpdtest
+  status:
+    loadBalancer: {}
+- kind: List
+  metadata: {}
+  apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    creationTimestamp: null
+    labels:
+      app: httpdtest
+      app.kubernetes.io/component: httpdtest
+      app.kubernetes.io/instance: httpdtest
+    name: httpdtest
+  spec:
+    port:
+      targetPort: https
+    tls:
+      termination: edge
+    to:
+      kind: ""
+      name: httpdtest
+      weight: null
+  status: {}
