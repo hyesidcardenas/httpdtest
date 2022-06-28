@@ -2,9 +2,6 @@
 apiVersion: image.openshift.io/v1
 kind: ImageStream
 metadata:
-  annotations:
-    openshift.io/generated-by: OpenShiftNewApp
-  creationTimestamp: null
   labels:
     app: httpdtest
     app.kubernetes.io/component: httpdtest
@@ -20,9 +17,6 @@ status:
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
-  annotations:
-    openshift.io/generated-by: OpenShiftNewApp
-  creationTimestamp: null
   labels:
     app: httpdtest
     app.kubernetes.io/component: httpdtest
@@ -64,10 +58,6 @@ status:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"httpdtest:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"httpdtest\")].image"}]'
-    openshift.io/generated-by: OpenShiftNewApp
-  creationTimestamp: null
   labels:
     app: httpdtest
     app.kubernetes.io/component: httpdtest
@@ -82,9 +72,6 @@ spec:
   strategy: {}
   template:
     metadata:
-      annotations:
-        openshift.io/generated-by: OpenShiftNewApp
-      creationTimestamp: null
       labels:
         deployment: httpdtest
     spec:
@@ -102,9 +89,6 @@ status: {}
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    openshift.io/generated-by: OpenShiftNewApp
-  creationTimestamp: null
   labels:
     app: httpdtest
     app.kubernetes.io/component: httpdtest
