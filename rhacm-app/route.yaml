@@ -3,7 +3,7 @@ kind: Route
 metadata:
   creationTimestamp: null
   name: httpdtest
-  namespace: workshow-page
+  namespace: workshop-page
 spec:
   port:
     targetPort: 8080
