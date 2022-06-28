@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: httpdtest
+    app.kubernetes.io/component: httpdtest
+    app.kubernetes.io/instance: httpdtest
+  name: httpdtest
+  namespace: workshop-page
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: httpdtest
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        deployment: httpdtest
+    spec:
+      containers:
+      - image: ' '
+        name: httpdtest
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        resources: {}
