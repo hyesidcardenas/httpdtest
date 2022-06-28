@@ -1,10 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: httpdtest
-    app.kubernetes.io/component: httpdtest
-    app.kubernetes.io/instance: httpdtest
   name: httpdtest
   namespace: workshop-page
 spec:

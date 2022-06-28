@@ -1,10 +1,6 @@
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
-  labels:
-    app: httpdtest
-    app.kubernetes.io/component: httpdtest
-    app.kubernetes.io/instance: httpdtest
   name: httpdtest
   namespace: workshop-page
 spec:
