@@ -12,6 +12,7 @@ items:
       app.kubernetes.io/component: httpdtest
       app.kubernetes.io/instance: httpdtest
     name: httpdtest
+    namespace: workshop-page
   spec:
     lookupPolicy:
       local: false
@@ -28,6 +29,7 @@ items:
       app.kubernetes.io/component: httpdtest
       app.kubernetes.io/instance: httpdtest
     name: httpdtest
+    namespace: workshop-page
   spec:
     nodeSelector: null
     output:
@@ -49,10 +51,10 @@ items:
       type: Source
     triggers:
     - github:
-        secret: 9NbE6mMX8eqKRLHHeoe-
+        secret: oF-5vbx57gPA9Myk0nh9
       type: GitHub
     - generic:
-        secret: oxztV-BkOmHVTHmO3VhX
+        secret: rHF9eKN7D9x1eoL46110
       type: Generic
     - type: ConfigChange
     - imageChange: {}
@@ -71,6 +73,7 @@ items:
       app.kubernetes.io/component: httpdtest
       app.kubernetes.io/instance: httpdtest
     name: httpdtest
+    namespace: workshop-page
   spec:
     replicas: 1
     selector:
@@ -106,6 +109,7 @@ items:
       app.kubernetes.io/component: httpdtest
       app.kubernetes.io/instance: httpdtest
     name: httpdtest
+    namespace: workshop-page
   spec:
     ports:
     - name: 8080-tcp
@@ -120,24 +124,5 @@ items:
       deployment: httpdtest
   status:
     loadBalancer: {}
-- kind: List
-  metadata: {}
-  apiVersion: route.openshift.io/v1
-  kind: Route
-  metadata:
-    creationTimestamp: null
-    labels:
-      app: httpdtest
-      app.kubernetes.io/component: httpdtest
-      app.kubernetes.io/instance: httpdtest
-    name: httpdtest
-  spec:
-    port:
-      targetPort: https
-    tls:
-      termination: edge
-    to:
-      kind: ""
-      name: httpdtest
-      weight: null
-  status: {}
+kind: List
+metadata: {}
