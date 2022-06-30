@@ -1,8 +1,14 @@
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: null
+  labels:
+    app: httpdtest
+    app.kubernetes.io/component: httpdtest
+    app.kubernetes.io/instance: httpdtest
   name: httpdtest
-  namespace: workshop-page
 spec:
   nodeSelector: null
   output:
@@ -24,10 +30,10 @@ spec:
     type: Source
   triggers:
   - github:
-      secret: oF-5vbx57gPA9Myk0nh9
+      secret: aGPPvzZHDnytTv8y6GqC
     type: GitHub
   - generic:
-      secret: rHF9eKN7D9x1eoL46110
+      secret: nR2O8kvkOtHuTdeix_WH
     type: Generic
   - type: ConfigChange
   - imageChange: {}

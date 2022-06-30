@@ -2,7 +2,6 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: httpdtest
-  namespace: workshop-page
 spec:
   port:
     targetPort: 8080
