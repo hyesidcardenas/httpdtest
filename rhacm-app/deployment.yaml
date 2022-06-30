@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpdtest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: httpdtest
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        deployment: httpdtest
+    spec:
+      containers:
+      - image: 'httpdtest'
+        name: httpdtest
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        resources: {}
+status: {}
+
