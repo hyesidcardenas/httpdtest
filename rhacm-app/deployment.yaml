@@ -15,7 +15,7 @@ spec:
         deployment: httpdtest
     spec:
       containers:
-      - image: ' '
+      - image: 'registry.redhat.io/rhscl/httpd-24-rhel7'
         name: httpdtest
         ports:
         - containerPort: 8080
