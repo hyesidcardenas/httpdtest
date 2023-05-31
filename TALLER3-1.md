@@ -79,7 +79,7 @@ mariadb-1-deploy                0/1     Completed          0               51s
     * A source build using source code from https://github.com/wordpress/wordpress will be created
       * The resulting image will be pushed to image stream tag "wordpress:latest"
       * Use 'oc start-build' to trigger a new build
-
+```
 --> Creating resources ...
     imagestream.image.openshift.io "wordpress" created
     buildconfig.build.openshift.io "wordpress" created
@@ -95,6 +95,7 @@ Warning: would violate PodSecurity "restricted:v1.24": allowPrivilegeEscalation 
 5. Valide que la aplicacion se encuentre en ejecucion
 ```
 [user0X@bastion ~]$  oc get pod
+
 NAME                            READY   STATUS             RESTARTS         AGE
 mariadb-1-59x4r                 1/1     Running            0                98s
 mariadb-1-deploy                0/1     Completed          0                101s
@@ -105,11 +106,13 @@ wordpress-7b7b44f45b-pv5hz      1/1     Running            0                5s
 6. Validar los servicios y exponer la ruta del wordpres
 ```
 [user0X@bastion ~]$ oc get svc
+
 NAME        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
 mysql       ClusterIP   172.30.84.196   <none>        3306/TCP            9m
 wordpress   ClusterIP   172.30.200.65   <none>        8080/TCP,8443/TCP   3m
-    
+```   
 [user0X@bastion ~]$ oc expose svc wordpress
+```
 route.route.openshift.io/wordpress exposed
 ```
 
