@@ -12,7 +12,7 @@ https://docs.openshift.com/dedicated/3/admin_guide/assembly_backing-up-restoring
 Existe un procedimiento que se puede utilizar para realizar copias de seguridad de proyectos. El comando de exportación oc se utiliza para hacer una copia de seguridad de los objetos a nivel de proyecto. Ejecute el comando para cada objeto que se guardará. Por ejemplo, para hacer una copia de seguridad del archivo de configuración de implementación front-end llamado frontend como dc-frontend en formato YAML, ejecute el siguiente comando:
 
 ```
-[user@master ~]$ oc export dc frontend -o yaml > dc-frontend.yaml
+[user@master ~]$ oc dc frontend -o yaml > dc-frontend.yaml
 ```
 Backup de un proyecto entero.
 Valide el proyecto en el que se encuentra actualmente
@@ -23,7 +23,7 @@ Using project "user0X-backup" on server "https://loadbalancer.1b84.example.opent
 ```
 Cree una nueva aplicacion
 ```
-[user01@bastion ~]$ oc new-app php~https://github.com/jmanuelcalvo/app.git --name=backup
+[user01@bastion ~]$ oc new-app php~https://github.com/hyesidcardenas/app.git --name=backup
 [user10@bastion backup]$ oc expose  svc backup
 ```
 
@@ -31,7 +31,7 @@ Cree una carpeta donde almacenara los backups
 ```
 [user01@bastion ~]$ mkdir backup
 [user01@bastion ~]$ cd backup/
-[user01@bastion backup]$ oc get -o yaml --export all > project.yaml
+[user01@bastion backup]$ oc get -o yaml all > project.yaml
 ```
 Exporte los role bindings, secrets, service accounts, y persistent volume claims del proyecto
 ```
