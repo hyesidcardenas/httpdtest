@@ -1,0 +1,88 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww20220\viewh11660\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 WorkShop - Red Hat OpenShift Container Platform
+\f1\b0 \
+\
+
+\f0\b Crear una imagen de contenedor del servidor HTTP Apache con un Containerfile e implementarla en un cl\'faster de OpenShift, se pueden seguir los siguientes pasos:\
+\
+Cree un nuevo proyecto para la aplicaci\'f3n. Coloque como prefijo del nombre del proyecto apache-prueba
+\f1\b0 \
+\
+# oc new-project apache-prueba\
+\
+
+\f0\b Crear un archivo llamado Dockerfile o Containerfile con el siguiente contenido
+\f1\b0 \
+<pre>\
+FROM ubi8/ubi:8.3\
+MAINTAINER Yesid Cardenas ycardena@redhat.com\
+LABEL description="A custom Apache container based on UBI 8"\
+RUN yum install -y httpd && \\\
+ yum clean all\
+RUN echo "Hello from Containerfile" > /var/www/html/index.html\
+EXPOSE 80\
+CMD ["httpd", "-D", "FOREGROUND"]\
+</pre>\
+
+\f0\b \
+Compile la imagen secundaria del servidor HTTP Apache
+\f1\b0 \
+#podman build --layers=false  -t apache-prueba .\
+\
+
+\f0\b Vea las im\'e1genes:
+\f1\b0 \
+# podman images\
+\
+
+\f0\b Etiquete y suba la imagen Quay.io.
+\f1\b0 \
+# podman tag apache-prueba quay.io/usuarioquay/apache-prueba\
+# podman login quay.io -u usuarioquay\
+# podman push --format v2s1 quay.io/usuarioquay/apache-prueba\
+\
+
+\f0\b Inicie sesi\'f3n en Quay.io [https://quay.io] y haga que la nueva imagen sea p\'fablica.
+\f1\b0 \
+\
+
+\f0\b Implemente la imagen secundaria del servidor HTTP Apache:
+\f1\b0 \
+# oc new-app --name apache quay.io/usuarioquay/apache-prueba\
+\
+
+\f0\b Verifique que el pod de la aplicaci\'f3n 
+\f1\b0 \
+# oc get pods\
+\
+
+\f0\b Inspeccione los registros del contenedor para ver el motivo por el que el pod no logr\'f3 iniciarse:
+\f1\b0 \
+# oc logs pod-name\
+\
+
+\f0\b NOTA:\
+Debido a que OpenShift ejecuta contenedores con un ID de usuario aleatorio, los puertos inferiores a 1024 cuentan con privilegios y solo se pueden ejecutar como root.\
+El ID de usuario aleatorio que usa OpenShift para ejecutar el contenedor no tiene permisos de lectura ni de escritura de archivos de registro en /var/log/httpd (la ubicaci\'f3n predeterminada del archivo de registro para el servidor HTTP Apache en RHEL 7).
+\f1\b0 \
+\
+
+\f0\b Cree una ruta OpenShift para exponer la aplicaci\'f3n a acceso externo:
+\f1\b0 \
+# oc expose --port='8080' svc/nameservice\
+\
+
+\f0\b Obtenga la URL de enrutamiento con el comando oc get route:
+\f1\b0 \
+# oc get route\
+\
+
+\f0\b Pruebe la aplicaci\'f3n con la URL de ruta que obtuvo en el paso anterior:
+\f1\b0 \
+# curl http://route.apps}
