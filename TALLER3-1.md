@@ -5,7 +5,7 @@
 # Taller No 3.
 Despliegue de aplicaciones mas complejas donde se cuenta con una BD y un servidor de aplicaciones
 
-# Recuerde todos los pasos de los ejercicios anteriores para persistir los datos
+# Despliegue de aplicaciones Básicas 
 
 1. Cree un nuevo proyecto 
 ```
