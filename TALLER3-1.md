@@ -56,7 +56,7 @@ to build a new example application in Ruby.
     Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
      'oc expose service/mariadb' 
     Run 'oc status' to view your app
-
+```
 3. Verifique que el pod este en ejecucion
 ```
 [user0X@bastion ~]$ oc get pod
@@ -66,8 +66,8 @@ mariadb-1-deploy                0/1     Completed          0               51s
 ```
 4. Cree la aplicacion FrontEnd que contiene el codigo fuente de la aplicacion Wordpress
 ```
-[user0X@bastion ~]$ oc new-app php~https://github.com/wordpress/wordpress
-
+[user0X@bastion ~]$ oc new-app  php~https://github.com/wordpress/wordpress
+```
 --> Found image c356a13 (9 days old) in image stream "openshift/php" under tag "8.0-ubi8" for "php"
 
     Apache 2.4 with PHP 8.0 
@@ -91,7 +91,7 @@ Warning: would violate PodSecurity "restricted:v1.24": allowPrivilegeEscalation 
     Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
      'oc expose service/wordpress' 
     Run 'oc status' to view your app.
-
+```
 5. Valide que la aplicacion se encuentre en ejecucion
 ```
 [user0X@bastion ~]$  oc get pod
