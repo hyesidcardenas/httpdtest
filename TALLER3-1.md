@@ -20,72 +20,86 @@ to build a new example application in Ruby.
 ````
 2. Cree una aplicacion de MySQL que es donde se van a almacenar los datos
 ```
-[user0X@bastion ~]$ oc new-app mysql --name=mysql -e MYSQL_USER=wpuser -e MYSQL_PASSWORD=mypa55 -e MYSQL_ROOT_PASSWORD=r00tpa55 -e MYSQL_DATABASE=wordpress
---> Found image f171d28 (10 months old) in image stream "openshift/mysql" under tag "5.7" for "mysql"
+[user0X@bastion ~]$ oc new-app mariadb-ephemeral
+--> Deploying template "prueba/mariadb-ephemeral" to project prueba
 
-    MySQL 5.7
-    ---------
-    MySQL is a multi-user, multi-threaded SQL database server. The container image provides a containerized packaging of the MySQL mysqld daemon and client application. The mysqld server daemon accepts connections from clients and provides access to content from MySQL databases on behalf of the clients.
+     MariaDB (Ephemeral)
+     ---------
+     MariaDB database service, without persistent storage. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/mariadb-container/blob/master/10.3/root/usr/share/container-scripts/mysql/README.md.
+     
+     WARNING: Any data stored will be lost upon pod destruction. Only use this template for testing
 
-    Tags: database, mysql, mysql57, rh-mysql57
+     The following service(s) have been created in your project: mariadb.
+     
+            Username: user02Y
+            Password: EAViSVpTroB6Gm1o
+       Database Name: sampledb
+      Connection URL: mysql://mariadb:3306/
+     
+     For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/mariadb-container/blob/master/10.3/root/usr/share/container-scripts/mysql/README.md.
 
-    * This image will be deployed in deployment config "mysql"
-    * Port 3306/tcp will be load balanced by service "mysql"
-      * Other containers can access this service through the hostname "mysql"
+     * With parameters:
+        * Memory Limit=512Mi
+        * Namespace=openshift
+        * Database Service Name=mariadb
+        * MariaDB Connection Username=user02Y # generated
+        * MariaDB Connection Password=EAViSVpTroB6Gm1o # generated
+        * MariaDB root Password=k1ihHB3itWllT0YX # generated
+        * MariaDB Database Name=sampledb
+        * Version of MariaDB Image=10.3-el8
 
 --> Creating resources ...
-    imagestreamtag.image.openshift.io "mysql:5.7" created
-    deploymentconfig.apps.openshift.io "mysql" created
-    service "mysql" created
+    secret "mariadb" created
+    service "mariadb" created
+    deploymentconfig.apps.openshift.io "mariadb" created
 --> Success
     Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
-     'oc expose svc/mysql'
-    Run 'oc status' to view your app.
-```
+     'oc expose service/mariadb' 
+    Run 'oc status' to view your app
 
 3. Verifique que el pod este en ejecucion
 ```
 [user0X@bastion ~]$ oc get pod
-NAME            READY     STATUS    RESTARTS   AGE
-mysql-1-84ckz   1/1       Running   0          2m
+NAME                            READY   STATUS             RESTARTS         AGE
+mariadb-1-59x4r                 1/1     Running            0               48s
+mariadb-1-deploy                0/1     Completed          0               51s
 ```
 4. Cree la aplicacion FrontEnd que contiene el codigo fuente de la aplicacion Wordpress
 ```
-[user0X@bastion ~]$ oc new-app php~https://github.com/jmanuelcalvo/wordpress.git --name=wordpress
---> Found image 4039444 (10 months old) in image stream "openshift/php" under tag "7.1" for "php"
+[user0X@bastion ~]$ oc new-app php~https://github.com/wordpress/wordpress
 
-    Apache 2.4 with PHP 7.1
-    -----------------------
-    PHP 7.1 available as container is a base platform for building and running various PHP 7.1 applications and frameworks. PHP is an HTML-embedded scripting language. PHP attempts to make it easy for developers to write dynamically generated web pages. PHP also offers built-in database integration for several commercial and non-commercial database management systems, so writing a database-enabled webpage with PHP is fairly simple. The most common use of PHP coding is probably as a replacement for CGI scripts.
+--> Found image c356a13 (9 days old) in image stream "openshift/php" under tag "8.0-ubi8" for "php"
 
-    Tags: builder, php, php71, rh-php71
+    Apache 2.4 with PHP 8.0 
+    ----------------------- 
+    PHP 8.0 available as container is a base platform for building and running various PHP 8.0 applications and frameworks. PHP is an HTML-embedded scripting language. PHP attempts to make it easy for developers to write dynamically generated web pages. PHP also offers built-in database integration for several commercial and non-commercial database management systems, so writing a database-enabled webpage with PHP is fairly simple. The most common use of PHP coding is probably as a replacement for CGI scripts.
 
-    * A source build using source code from https://github.com/jmanuelcalvo/wordpress.git will be created
+    Tags: builder, php, php80, php-80
+
+    * A source build using source code from https://github.com/wordpress/wordpress will be created
       * The resulting image will be pushed to image stream tag "wordpress:latest"
-      * Use 'start-build' to trigger a new build
-    * This image will be deployed in deployment config "wordpress"
-    * Ports 8080/tcp, 8443/tcp will be load balanced by service "wordpress"
-      * Other containers can access this service through the hostname "wordpress"
+      * Use 'oc start-build' to trigger a new build
 
 --> Creating resources ...
     imagestream.image.openshift.io "wordpress" created
     buildconfig.build.openshift.io "wordpress" created
-    deploymentconfig.apps.openshift.io "wordpress" created
+Warning: would violate PodSecurity "restricted:v1.24": allowPrivilegeEscalation != false (container "wordpress" must set securityContext.allowPrivilegeEscalation=false), unrestricted capabilities (container "wordpress" must set securityContext.capabilities.drop=["ALL"]), runAsNonRoot != true (pod or container "wordpress" must set securityContext.runAsNonRoot=true), seccompProfile (pod or container "wordpress" must set securityContext.seccompProfile.type to "RuntimeDefault" or "Localhost")
+    deployment.apps "wordpress" created
     service "wordpress" created
 --> Success
-    Build scheduled, use 'oc logs -f bc/wordpress' to track its progress.
+    Build scheduled, use 'oc logs -f buildconfig/wordpress' to track its progress.
     Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
-     'oc expose svc/wordpress'
+     'oc expose service/wordpress' 
     Run 'oc status' to view your app.
-```
 
 5. Valide que la aplicacion se encuentre en ejecucion
 ```
 [user0X@bastion ~]$  oc get pod
-NAME                READY     STATUS      RESTARTS   AGE
-mysql-1-84ckz       1/1       Running     0          6m
-wordpress-1-build   0/1       Completed   0          1m
-wordpress-1-l9tnh   1/1       Running     0          25s
+NAME                            READY   STATUS             RESTARTS         AGE
+mariadb-1-59x4r                 1/1     Running            0                98s
+mariadb-1-deploy                0/1     Completed          0                101s
+wordpress-1-build               0/1     Completed          0                75s
+wordpress-7b7b44f45b-pv5hz      1/1     Running            0                5s
 ```
 
 6. Validar los servicios y exponer la ruta del wordpres
