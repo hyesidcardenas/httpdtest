@@ -25,8 +25,10 @@ podman build --layers=false  -t apache-prueba .
 podman images
 
 ## Etiquete y suba la imagen Quay.io.
-podman tag apache-prueba quay.io/usuarioquay/apache-prueba
+podman tag apache-prueba quay.io/usuarioquay/apache-prueba 
+
 podman login quay.io -u usuarioquay
+
 podman push --format v2s1 quay.io/usuarioquay/apache-prueba
 
 ## Inicie sesión en Quay.io [https://quay.io] y haga que la nueva imagen sea pública.
