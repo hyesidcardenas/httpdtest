@@ -8,7 +8,7 @@ Ubica el archivo htpasswd que contiene los usuarios existentes. Este archivo pue
 
 
 ```
-oc extract secret/localusers -n openshift-config > --to ~/DO280/labs/auth-provider/ --confirm
+oc extract secret/localusers -n openshift-config > --to /tmp/ --confirm
 
 ````
 
