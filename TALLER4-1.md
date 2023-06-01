@@ -64,10 +64,10 @@ oc policy add-role-to-user edit pruebas
 Verifique que el usuario pruebas solo tenga privilegios de lectura en la aplicación httpd.
 
 Inicie sesión con el usuario pruebas.
-
+```
 oc login -u pruebas
-
+````
 Intente escalar la aplicación httpd. Esto debería generar errores.
-
-oc scale deployment httpd --replicas 3
-
+```
+oc scale deployment httpd --replicas 5
+````
