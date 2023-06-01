@@ -1,10 +1,12 @@
 # Aplicación de permisos mediante RBAC
 
-Crear grupos en OpenShift y agregar miembros a estos grupos.
-Cree un proyecto y asigne privilegios de administración del proyecto al proyecto.
-Como administrador de proyecto, asignar privilegios de lectura y escritura a diferentes grupos de usuarios
+Crear grupos en OpenShift y agregar usuarios a estos grupos. 
 
-Inicie sesión con el usuario admin y cree el proyecto user0X-rbac.
+Crear un proyecto y asignar privilegios de administración del proyecto al grupo. 
+
+Asignar privilegios de lectura y escritura a diferentes grupos de usuarios.
+
+Inicie sesión con el usuario admin0x y cree el proyecto user0X-rbac.
 
 oc new-project user0X-rbac
 
