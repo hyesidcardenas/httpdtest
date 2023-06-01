@@ -10,7 +10,7 @@ oc new-project user0X-rbac
 
 ## Cree los grupos grupo-dev y grupo-qa, y agregue los miembros respectivos.
 
-Cree un grupo denominado dev-group.
+Cree un grupo denominado group-dev.
 ```
 oc adm groups new grupo-dev
 ``` 
