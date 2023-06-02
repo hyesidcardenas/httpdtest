@@ -8,7 +8,7 @@ docker run httpd | podman run httpd
 ## Levantar el contenedor en backgroud:
 docker run -d httpd | podman run -d httpd
 ## Redireccionar un puerto local de la máquina (TCP/8080) a un puerto del contenedor (TCP/80):
-docker run -d -p 8080:80 httpd | docker run -d -p 8080:80 httpd
+docker run -d -p 8080:80 httpd | podman run -d -p 8080:80 httpd
 ## Conectarse a un contenedor:
 docker exec -ti container_name bash | podman exec -ti container_name bash
 ## Cambiar el index.html por defecto
