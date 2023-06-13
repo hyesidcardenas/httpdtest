@@ -157,7 +157,7 @@ to build a new example application in Ruby.
 ```
 4. Cree una nueva aplicacion utilizando la metodologia s2i de donde el source es un repo git y la image es php
 ```
-[user01@bastion ~]$ oc new-app php~https://github.com/jmanuelcalvo/app.git --name=app0X
+[user01@bastion ~]$ oc new-app php~https://github.com//hyesidcardenas/app.git --name=app0X
 --> Found image ab2fbc4 (13 days old) in image stream "openshift/php" under tag "7.1" for "php"
 
     Apache 2.4 with PHP 7.1
@@ -166,7 +166,7 @@ to build a new example application in Ruby.
 
     Tags: builder, php, php71, rh-php71
 
-    * A source build using source code from https://github.com/jmanuelcalvo/app.git will be created
+    * A source build using source code from https://github.com//hyesidcardenas/app.git will be created
       * The resulting image will be pushed to image stream tag "app01:latest"
       * Use 'start-build' to trigger a new build
     * This image will be deployed in deployment config "app01"
