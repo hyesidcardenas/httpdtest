@@ -53,7 +53,7 @@ oc new-app -S --docker-image=python	# Imagenes de un servidor de registro de Doc
 
 OpenShift se encarga de conocer el lenguaje de programacion que se encuentra en el repo git y selecciona la imagen (is) requerida ej: php, ruby, java
 ```
-oc new-app https://github.com/jmanuelcalvo/app.git --name=app1
+oc new-app https://github.com/hyesidcardenas/app.git --name=app1
 
 Se indica la imagen (is) especifica (centos/ruby-25-centos7) a utilizar y la fuente del codigo en un repositorio git
 oc new-app centos/ruby-25-centos7~https://github.com/sclorg/ruby-ex.git
