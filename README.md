@@ -21,7 +21,7 @@ docker run -d -p 8080:80 httpd | podman run -d -p 8080:80 httpd
 docker run -d -p 8080:80 -v /ruta/local:/ruta/containter  httpd | podman run -d -p 8080:80 -v /ruta/local:/ruta/containter  httpd
 ## Crear un archivo llamado Dockerfile o Containerfile con el siguiente contenido, para instalar el comando "ps" en la imagen httpd
 <pre>
-FROM ubi8/ubi:8.3
+FROM docker.io/redhat/ubi8
 MAINTAINER Yesid Cardenas ycardena@redhat.com
 LABEL description="A custom Apache container based on UBI 8"
 RUN yum install -y httpd && \
