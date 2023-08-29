@@ -49,30 +49,7 @@ oc new-app -S --template=ruby 		  # Plantillas de OCP
 oc new-app -S --image-stream=mysql	# Imagenes cargadas previamente en el servidor de registro de OCP
 oc new-app -S --docker-image=python	# Imagenes de un servidor de registro de Docker
 ```
-## Ejemplos
 
-OpenShift se encarga de conocer el lenguaje de programacion que se encuentra en el repo git y selecciona la imagen (is) requerida ej: php, ruby, java
-```
-oc new-app https://github.com/hyesidcardenas/app.git --name=app1
-
-Se indica la imagen (is) especifica (centos/ruby-25-centos7) a utilizar y la fuente del codigo en un repositorio git
-oc new-app oc new-app openshift/ruby:25~https://github.com/hyesidcardenas/ruby-ex
-
-Se utiliza la imagen (is) de MySQL y se le pasan los parametros como variables
-oc new-app mysql MYSQL_USER=user MYSQL_PASSWORD=pass MYSQL_DATABASE=testdb -l db=mysql
-oc new-app mysql:8.0 --name=mysql -e MYSQL_USER=user1 -e MYSQL_PASSWORD=mypa55 -e MYSQL_ROOT_PASSWORD=r00tpa55 -e MYSQL_DATABASE=testdb
-
-Se utiliza una imagen de docker a partir de servidor de registro externo
-oc new-app --docker-image=myregistry.com/mycompany/mysql --name=private
-
-Se crea un archivo en formato yaml con la definicion de todos los recursos y se crea la app a partir del mismo
-oc create -f app.yml
-
-Elimina todos los recursos creados con el label app1
-oc delete all -l app=app1
-
-Elimina todos los recursos dentro del proyecto (menos el proyecto)
-oc delete all --all
 ```
 
 # Obtener informacion de OpenShift
