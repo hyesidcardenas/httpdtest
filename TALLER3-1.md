@@ -1,7 +1,7 @@
 # Talleres
 [Inicio](../Inicio.md)
 
-```
+
 ## Ejemplos
 
 OpenShift se encarga de conocer el lenguaje de programacion que se encuentra en el repo git y selecciona la imagen (is) requerida ej: php, ruby, java
@@ -26,7 +26,7 @@ oc delete all -l app=app1
 
 Elimina todos los recursos dentro del proyecto (menos el proyecto)
 oc delete all --all
-````
+
 # Taller No 3.
 Despliegue de aplicaciones mas complejas donde se cuenta con una BD y un servidor de aplicaciones
 
