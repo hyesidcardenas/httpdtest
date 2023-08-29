@@ -299,22 +299,7 @@ app01     app01-project01.apps.1b84.example.opentlc.com             app01      8
 [user01@bastion ~]$ curl http://app01-project01.apps.1b84.example.opentlc.com/hostname.php
 Esta es la version 1 de la app. Se ejecuta en el host -> app01-1-tdbdn (10.1.10.114)
 ```
-
-8. Escalar el numero de pods de una aplicacion
-```
-[user01@bastion ~]$ oc scale --replicas=3 dc app01
-deploymentconfig.apps.openshift.io/app01 scaled
-```
-y validar que el comando curl ahora muestra los 3 IPs diferentes (es probable que en principio solo vea 1 IP, ejecute el comando curl repetidas veces)
-```
-[user01@bastion ~]$ curl http://app01-project01.apps.2775.example.opentlc.com/hostname.php
-Esta es la version 1 de la app. Se ejecuta en el host -> app01-1-tdbdn (10.1.10.114)
-
-[user01@bastion ~]$ curl http://app01-project01.apps.2775.example.opentlc.com/hostname.php
-Esta es la version 1 de la app. Se ejecuta en el host -> app01-1-b8gbm (10.1.14.149)
-```
-
-9. Por ulitmo eliminar todo e intentar hacer lo mismo por la interfase Web
+8. Por ulitmo eliminar todo e intentar hacer lo mismo por la interfase Web
 ```
 [user01@bastion ~]$ oc delete all --all
 pod "app01-1-b8gbm" deleted
