@@ -135,6 +135,7 @@ to build a new example application in Ruby.
 ```
 4. Cree una nueva aplicacion utilizando la metodologia s2i de donde el source es un repo git y la image es php
 ```
+```
 [user01@bastion ~]$ oc new-app php~https://github.com//hyesidcardenas/app.git --name=app0X
 --> Found image ab2fbc4 (13 days old) in image stream "openshift/php" under tag "7.1" for "php"
 
