@@ -110,18 +110,18 @@ oc port-forward  mysql-1-t3qfb 13306:3306	| 	mysql -h127.0.0.1 -P13306 -uuser1 -
 ```
 Tenga en cuenta que para los ejercicios, debe cambiar el nombre del usuario user0X por el que le fue asignado
 ```
-# Ejecute los siguientes comandos:
-1. Verifique con que usuario se encuentre logueado
+## Ejecute los siguientes comandos:
+# 1. Verifique con que usuario se encuentre logueado
 ```
 [user01@bastion ~]$ oc whoami
 user01
 ```
-```
-2. En caso que no este logueado, loguese con su usuario (contraseña redhat01)
+
+# 2. En caso que no este logueado, loguese con su usuario (contraseña redhat01)
 ```
 [user01@bastion ~]$  oc login https://loadbalancer.2775.example.opentlc.com -u user0X
 ```
-3. Cree un nuevo proyecto
+# 3. Cree un nuevo proyecto
 ```
 [user01@bastion ~]$ oc new-project project0X
 - Now using project "project01" on server "https://loadbalancer.2775.internal:443".
@@ -132,9 +132,9 @@ You can add applications to this project with the 'new-app' command. For example
 
 to build a new example application in Ruby.
 ````
-```
-4. Cree una nueva aplicacion utilizando la metodologia s2i de donde el source es un repo git y la image es php
-```
+
+# 4. Cree una nueva aplicacion utilizando la metodologia s2i de donde el source es un repo git y la image es php
+
 ```
 [user01@bastion ~]$ oc new-app php~https://github.com//hyesidcardenas/app.git --name=app0X
 --> Found image ab2fbc4 (13 days old) in image stream "openshift/php" under tag "7.1" for "php"
@@ -164,7 +164,7 @@ to build a new example application in Ruby.
     Run 'oc status' to view your app.
 ````
 
-5. Ejecute los siguientes comandos de verificacion e identifique los nombres de los recursos
+# 5. Ejecute los siguientes comandos de verificacion e identifique los nombres de los recursos
 ```
 oc get pod
 oc get service
@@ -184,7 +184,7 @@ app01-1-tdbdn   1/1       Running     0          3m
 NAME      TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)             AGE
 app01     ClusterIP   172.30.0.109   <none>        8080/TCP,8443/TCP   5m
 ````
-6. Ejecute los siguientes comandos de obtener informacion adicionar de los anteriores recursos
+# 6. Ejecute los siguientes comandos de obtener informacion adicionar de los anteriores recursos
 ```
 oc describe pod
 oc describe service
@@ -250,7 +250,7 @@ Events:
   Normal  Started    5m    kubelet, node3.1b84.internal  Started container
 ````
   
-7. Publique la aplicacion que acaba de crear
+# 7. Publique la aplicacion que acaba de crear
 
 ![RouteFlow](routerflow.png)
 - Valide si se encuentra la ruta (router creado)
@@ -278,7 +278,7 @@ app01     app01-project01.apps.1b84.example.opentlc.com             app01      8
 [user01@bastion ~]$ curl http://app01-project01.apps.1b84.example.opentlc.com/hostname.php
 Esta es la version 1 de la app. Se ejecuta en el host -> app01-1-tdbdn (10.1.10.114)
 ```
-8. Por ulitmo eliminar todo e intentar hacer lo mismo por la interfase Web
+# 8. Por ulitmo eliminar todo e intentar hacer lo mismo por la interfase Web
 ```
 [user01@bastion ~]$ oc delete all --all
 pod "app01-1-b8gbm" deleted
