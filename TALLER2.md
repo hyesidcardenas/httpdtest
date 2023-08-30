@@ -105,14 +105,14 @@ oc rsync <pod>:<pod_dir> <local_dir> -c <container>
 oc port-forward <pod> <local_port>:<remote_port>
 oc port-forward  mysql-1-t3qfb 13306:3306	| 	mysql -h127.0.0.1 -P13306 -uuser1 -pmypa55
 ```
-
-
+```
 # Taller No 1.
-
+```
 Tenga en cuenta que para los ejercicios, debe cambiar el nombre del usuario user0X por el que le fue asignado
-
+```
 # Ejecute los siguientes comandos:
 1. Verifique con que usuario se encuentre logueado
+```
 ```
 [user01@bastion ~]$ oc whoami
 user01
