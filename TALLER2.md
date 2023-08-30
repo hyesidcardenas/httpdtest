@@ -113,14 +113,13 @@ Tenga en cuenta que para los ejercicios, debe cambiar el nombre del usuario user
 # Ejecute los siguientes comandos:
 1. Verifique con que usuario se encuentre logueado
 ```
-```
 [user01@bastion ~]$ oc whoami
 user01
-```
+````
 2. En caso que no este logueado, loguese con su usuario (contraseña redhat01)
 ```
 [user01@bastion ~]$  oc login https://loadbalancer.2775.example.opentlc.com -u user0X
-```
+````
 3. Cree un nuevo proyecto
 ```
 [user01@bastion ~]$ oc new-project project0X
@@ -131,6 +130,7 @@ You can add applications to this project with the 'new-app' command. For example
     oc new-app centos/ruby-25-centos7~https://github.com/sclorg/ruby-ex.git
 
 to build a new example application in Ruby.
+````
 ```
 4. Cree una nueva aplicacion utilizando la metodologia s2i de donde el source es un repo git y la image es php
 ```
@@ -160,7 +160,7 @@ to build a new example application in Ruby.
     Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
      'oc expose svc/app01'
     Run 'oc status' to view your app.
-```
+````
 
 5. Ejecute los siguientes comandos de verificacion e identifique los nombres de los recursos
 ```
@@ -181,7 +181,7 @@ app01-1-tdbdn   1/1       Running     0          3m
 [user01@bastion ~]$ oc get service
 NAME      TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)             AGE
 app01     ClusterIP   172.30.0.109   <none>        8080/TCP,8443/TCP   5m
-```
+````
 6. Ejecute los siguientes comandos de obtener informacion adicionar de los anteriores recursos
 ```
 oc describe pod
@@ -246,7 +246,7 @@ Events:
   Normal  Pulled     5m    kubelet, node3.1b84.internal  Successfully pulled image "docker-registry.default.svc:5000/project01/app01@sha256:62a685552a2c1e35118de9512e46ceb4b3d1b873fbf678400c1a8eebf8190a7e"
   Normal  Created    5m    kubelet, node3.1b84.internal  Created container
   Normal  Started    5m    kubelet, node3.1b84.internal  Started container
-```
+````
   
 7. Publique la aplicacion que acaba de crear
 
