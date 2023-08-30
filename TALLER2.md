@@ -115,11 +115,12 @@ Tenga en cuenta que para los ejercicios, debe cambiar el nombre del usuario user
 ```
 [user01@bastion ~]$ oc whoami
 user01
-````
+```
+```
 2. En caso que no este logueado, loguese con su usuario (contraseña redhat01)
 ```
 [user01@bastion ~]$  oc login https://loadbalancer.2775.example.opentlc.com -u user0X
-````
+```
 3. Cree un nuevo proyecto
 ```
 [user01@bastion ~]$ oc new-project project0X
