@@ -123,7 +123,7 @@ user01
 ```
 # 3. Cree un nuevo proyecto
 ```
-[user01@bastion ~]$ oc new-project project0X
+[user01@bastion ~]$ oc new-project lab0X
 - Now using project "project01" on server "https://loadbalancer.2775.internal:443".
 
 You can add applications to this project with the 'new-app' command. For example, try:
